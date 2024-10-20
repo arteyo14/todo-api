@@ -1,0 +1,14 @@
+# Ignore node_modules folder
+node_modules/
+
+# Ignore package-lock.json
+package-lock.json
+
+# Ignore bun.lockb
+bun.lockb
+
+# Ignore lock files
+*.lock
+
+# Ignore dist folder (ถ้าคอมไพล์ไฟล์ไปที่ dist)
+dist/
