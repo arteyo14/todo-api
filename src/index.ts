@@ -7,7 +7,7 @@ const port = process.env.PORT || 8080;
 app.use(express.json());
 app.use("/api", mainRoute);
 
-app.get("/", (req: Request, res: Response) => {
+app.get("/", (_: Request, res: Response) => {
   res.send("API Server is running");
 });
 
