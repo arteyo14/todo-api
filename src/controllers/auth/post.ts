@@ -45,7 +45,17 @@ export const login = async (req: Request, res: Response) => {
       return;
     }
 
-    const token = jwt.sign(
+    const accessToken = jwt.sign(
+      {
+        userId: user.id,
+        username: user.username,
+        email: user.email,
+      },
+      secretKey,
+      { expiresIn: "15m" }
+    );
+
+    const refreshToken = jwt.sign(
       {
         userId: user.id,
         username: user.username,
@@ -58,8 +68,8 @@ export const login = async (req: Request, res: Response) => {
     res.status(200).json({
       status: true,
       code: 200,
-      access_token: token,
-      refresh_token: token,
+      access_token: accessToken,
+      refresh_token: refreshToken,
     });
   } catch (error) {
     res.status(500).json({
