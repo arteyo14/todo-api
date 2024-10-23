@@ -1,4 +1,5 @@
 import { PrismaClient } from "@prisma/client";
+import { hashPassword } from "../src/utils/hashpassword";
 
 const prisma = new PrismaClient();
 
@@ -13,11 +14,13 @@ export const main = async () => {
   await prisma.$executeRaw`ALTER SEQUENCE status_id_seq RESTART WITH 1;`;
   await prisma.$executeRaw`ALTER SEQUENCE icon_id_seq RESTART WITH 1;`;
 
+  const password = await hashPassword("password");
+
   //init user
   await prisma.user.create({
     data: {
       username: "arteyo14",
-      password: "password",
+      password,
       email: "arteyo14@gmail.com",
     },
   });
