@@ -1,24 +1,11 @@
-// routes/indexRoute.ts
 import express from "express";
-import {
-  createUser,
-  deleteUser,
-  getUserById,
-  getUsers,
-  login,
-  updateUser,
-} from "../controllers";
+import authRouter from "./auth/authRoute";
+import userRouter from "./users/usersRoute";
 
 const router = express.Router();
 
-//auth
-router.use("/auth/login", login);
-
-//users
-router.get("/user", getUsers);
-router.get("/user/:id", getUserById);
-router.post("/user", createUser);
-router.put("/user/:id", updateUser);
-router.delete("/user/:id", deleteUser);
+// ใช้ Router ที่แยกไว้สำหรับ Authentication และ User
+router.use("/auth", authRouter);
+router.use("/user", userRouter);
 
 export default router;
