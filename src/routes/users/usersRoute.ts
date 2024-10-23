@@ -6,13 +6,14 @@ import {
   getUsers,
   updateUser,
 } from "../../controllers";
+import { authenticateToken } from "../../middlewares";
 
 const usersRouter = Router();
 
-usersRouter.get("/", getUsers);
-usersRouter.get("/:id", getUserById);
+usersRouter.get("/", authenticateToken, getUsers);
+usersRouter.get("/:id", authenticateToken, getUserById);
 usersRouter.post("/", createUser);
-usersRouter.put("/:id", updateUser);
-usersRouter.delete("/:id", deleteUser);
+usersRouter.put("/:id", authenticateToken, updateUser);
+usersRouter.delete("/:id", authenticateToken, deleteUser);
 
 export default usersRouter;
