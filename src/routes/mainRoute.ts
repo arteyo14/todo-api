@@ -1,14 +1,20 @@
-import { Router } from "express";
+// routes/indexRoute.ts
+import express from "express";
 import {
   createUser,
   deleteUser,
   getUserById,
   getUsers,
+  login,
   updateUser,
 } from "../controllers";
 
-const router = Router();
+const router = express.Router();
 
+//auth
+router.use("/auth/login", login);
+
+//users
 router.get("/user", getUsers);
 router.get("/user/:id", getUserById);
 router.post("/user", createUser);

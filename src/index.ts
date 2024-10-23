@@ -1,11 +1,11 @@
 import express, { Request, Response } from "express";
-import userRoutes from "./routes/userRoute";
+import mainRoute from "./routes/mainRoute";
 
 const app = express();
 const port = process.env.PORT || 8080;
 
 app.use(express.json());
-app.use("/api", userRoutes);
+app.use("/api", mainRoute);
 
 app.get("/", (req: Request, res: Response) => {
   res.send("API Server is running");
