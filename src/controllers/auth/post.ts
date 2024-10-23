@@ -11,6 +11,19 @@ export const login = async (req: Request, res: Response) => {
     const { username, password } = req.body;
     const validate: { [key: string]: string } = {};
 
+    if (!username || username.trim() === "") {
+      validate.username = "โปรดระบุ";
+    }
+
+    if (!password || password.trim() === "") {
+      validate.password = "โปรดระบุ";
+    }
+
+    if (Object.keys(validate).length > 0) {
+      res.status(400).json({ status: false, code: 400, error: validate });
+      return;
+    }
+
     const user = await prisma.user.findUnique({ where: { username } });
 
     if (!user) {
