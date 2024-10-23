@@ -8,7 +8,7 @@ app.use(express.json());
 app.use("/api", userRoutes);
 
 app.get("/", (req: Request, res: Response) => {
-  res.send("Hello, TypeScript Express!");
+  res.send("API Server is running");
 });
 
 app.listen(port, () => {
