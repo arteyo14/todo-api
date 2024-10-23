@@ -42,7 +42,7 @@ export const getUserById = async (req: Request, res: Response) => {
       res.status(404).json({
         status: false,
         code: 404,
-        error: { message: "User not found" },
+        error: { message: "ไม่พบผู้ใช้งาน" },
       });
       return;
     }
